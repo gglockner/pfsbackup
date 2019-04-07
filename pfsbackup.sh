@@ -1,10 +1,12 @@
 #!/bin/bash
 
-# Read configuration
+# Read backup configuration
 source pfs.conf
 
-# Download newest configuration
-NEW_CONF=${BACKUP_DIR}/${PREFIX}`date "+%Y-%m-%dT%H:%M:%S"`.xml
+PREFIX="config-${PFS_HOST}-"
+
+# Download pfsense configuration
+NEW_CONF=${BACKUP_DIR}/${PREFIX}`date "+%Y%m%d%H%M%S"`.xml
 scp -q ${PFS_USER}@${PFS_HOST}:/conf/config.xml ${NEW_CONF}
 
 # Check if the configuration changed
@@ -20,7 +22,7 @@ else
 	UPDATE=1
 fi
 
-if [ ${UPDATE} -eq 1 ]; then
+if [ ${UPDATE} -ne 0 ]; then
 	rm -fr ${OLD_CONF}
 	ln -s ${NEW_CONF} ${OLD_CONF}
 else
