@@ -24,7 +24,7 @@ fi
 
 if [ ${UPDATE} -ne 0 ]; then
 	rm -fr ${OLD_CONF}
-	# Cull old logs, based on https://superuser.com/a/554548/393413
+	# Cull old backups, based on https://superuser.com/a/554548/393413
 	ls -1t ${BACKUP_DIR}/${PREFIX}*.xml | (i=0; while read f; do
 	  if [ $i -lt ${BACKUP_COUNT} ]; then
 		((i++))
