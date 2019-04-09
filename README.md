@@ -9,5 +9,4 @@ Command-line backup for pfSense. Only saves changed backup files.
 
 ## TODO
 
-- Keep at most N old backups
 - Notify when backup fails
